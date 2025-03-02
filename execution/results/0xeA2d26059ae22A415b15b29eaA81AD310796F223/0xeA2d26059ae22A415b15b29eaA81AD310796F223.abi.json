@@ -1,0 +1,95 @@
+[
+    {
+        "inputs": [{
+            "name": "admin",
+            "internalType": "address",
+            "type": "address"
+        }],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "inputs": [{
+            "indexed": true,
+            "name": "implementation",
+            "internalType": "address",
+            "type": "address"
+        }],
+        "name": "Upgraded",
+        "anonymous": false,
+        "type": "event"
+    },
+    {
+        "stateMutability": "payable",
+        "type": "fallback"
+    },
+    {
+        "outputs": [{
+            "name": "",
+            "internalType": "address",
+            "type": "address"
+        }],
+        "inputs": [],
+        "name": "admin",
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "outputs": [{
+            "name": "",
+            "internalType": "address",
+            "type": "address"
+        }],
+        "inputs": [],
+        "name": "implementation",
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "outputs": [],
+        "inputs": [
+            {
+                "name": "_logic",
+                "internalType": "address",
+                "type": "address"
+            },
+            {
+                "name": "_data",
+                "internalType": "bytes",
+                "type": "bytes"
+            }
+        ],
+        "name": "initialize",
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "outputs": [],
+        "inputs": [{
+            "name": "newImplementation",
+            "internalType": "address",
+            "type": "address"
+        }],
+        "name": "upgradeTo",
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "outputs": [],
+        "inputs": [
+            {
+                "name": "newImplementation",
+                "internalType": "address",
+                "type": "address"
+            },
+            {
+                "name": "data",
+                "internalType": "bytes",
+                "type": "bytes"
+            }
+        ],
+        "name": "upgradeToAndCall",
+        "stateMutability": "payable",
+        "type": "function"
+    }
+]

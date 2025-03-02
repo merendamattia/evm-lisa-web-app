@@ -1,0 +1,63 @@
+[
+    {
+        "inputs": [
+            {
+                "name": "name",
+                "internalType": "string",
+                "type": "string"
+            },
+            {
+                "name": "symbol",
+                "internalType": "string",
+                "type": "string"
+            },
+            {
+                "name": "implementationAddr",
+                "internalType": "address",
+                "type": "address"
+            },
+            {
+                "name": "owner_",
+                "internalType": "address",
+                "type": "address"
+            },
+            {
+                "name": "router",
+                "internalType": "address",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "stateMutability": "payable",
+        "type": "fallback"
+    },
+    {
+        "outputs": [{
+            "name": "",
+            "internalType": "address",
+            "type": "address"
+        }],
+        "inputs": [],
+        "name": "implementation",
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "outputs": [{
+            "name": "",
+            "internalType": "contract SexyGame",
+            "type": "address"
+        }],
+        "inputs": [],
+        "name": "sexyGame",
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "stateMutability": "payable",
+        "type": "receive"
+    }
+]

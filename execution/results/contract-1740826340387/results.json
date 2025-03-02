@@ -1,0 +1,492 @@
+{
+    "bytecode": "0x6080604052600034151560965750604051600230310490736b6e4b338b4d5f7d847dab5492106751c57b7ff0906108fc8315029083906000818181858888f193505050501580156053573d6000803e3d6000fd5b5060405173e09f3630663b6b86e82d750b00206f8f8c6f8ad49082156108fc029083906000818181858888f193505050501580156094573d6000803e3d6000fd5b505b500000a165627a7a723058205ff37c6ec0874792b0fd774633f55769070e24b5f659403ce387b838ccb86a710029",
+    "address": "contract-1740826340387",
+    "events_signature": [],
+    "mnemonic_bytecode": "PUSH1 0x80\nPUSH1 0x40\nMSTORE\nPUSH1 0x00\nCALLVALUE\nISZERO\nISZERO\nPUSH1 0x96\nJUMPI\nPOP\nPUSH1 0x40\nMLOAD\nPUSH1 0x02\nADDRESS\nBALANCE\nDIV\nSWAP1\nPUSH20 0x6b6e4b338b4d5f7d847dab5492106751c57b7ff0\nSWAP1\nPUSH2 0x08fc\nDUP4\nISZERO\nMUL\nSWAP1\nDUP4\nSWAP1\nPUSH1 0x00\nDUP2\nDUP2\nDUP2\nDUP6\nDUP9\nDUP9\nCALL\nSWAP4\nPOP\nPOP\nPOP\nPOP\nISZERO\nDUP1\nISZERO\nPUSH1 0x53\nJUMPI\nRETURNDATASIZE\nPUSH1 0x00\nDUP1\nRETURNDATACOPY\nRETURNDATASIZE\nPUSH1 0x00\nREVERT\nJUMPDEST\nPOP\nPUSH1 0x40\nMLOAD\nPUSH20 0xe09f3630663b6b86e82d750b00206f8f8c6f8ad4\nSWAP1\nDUP3\nISZERO\nPUSH2 0x08fc\nMUL\nSWAP1\nDUP4\nSWAP1\nPUSH1 0x00\nDUP2\nDUP2\nDUP2\nDUP6\nDUP9\nDUP9\nCALL\nSWAP4\nPOP\nPOP\nPOP\nPOP\nISZERO\nDUP1\nISZERO\nPUSH1 0x94\nJUMPI\nRETURNDATASIZE\nPUSH1 0x00\nDUP1\nRETURNDATACOPY\nRETURNDATASIZE\nPUSH1 0x00\nREVERT\nJUMPDEST\nPOP\nJUMPDEST\nPOP\nSTOP\nSTOP\nLOG1\nPUSH6 0x627a7a723058\nSHA3\nPUSH0\nRETURN\nPUSH29 0x6ec0874792b0fd774633f55769070e24b5f659403ce387b838ccb86a71\nSTOP\n'29'(Unknown Opcode)\n",
+    "abi": [],
+    "working_directory": "execution\\results",
+    "basic_blocks": [
+        {
+            "instructions": [
+                {
+                    "pc": 148,
+                    "instruction": "JUMPDEST"
+                },
+                {
+                    "pc": 149,
+                    "instruction": "POP"
+                }
+            ],
+            "background_color": "\"#D3D3D3\"",
+            "outgoing_edges": [{
+                "color": "black",
+                "target": 150
+            }],
+            "last_instruction": "UNKNOWN",
+            "id": 148
+        },
+        {
+            "instructions": [
+                {
+                    "pc": 83,
+                    "instruction": "JUMPDEST"
+                },
+                {
+                    "pc": 84,
+                    "instruction": "POP"
+                },
+                {
+                    "pc": 85,
+                    "instruction": "PUSH1 0x40"
+                },
+                {
+                    "pc": 87,
+                    "instruction": "MLOAD"
+                },
+                {
+                    "pc": 88,
+                    "instruction": "PUSH20 0xe09f3630663b6b86e82d750b00206f8f8c6f8ad4"
+                },
+                {
+                    "pc": 109,
+                    "instruction": "SWAP1"
+                },
+                {
+                    "pc": 110,
+                    "instruction": "DUP3"
+                },
+                {
+                    "pc": 111,
+                    "instruction": "ISZERO"
+                },
+                {
+                    "pc": 112,
+                    "instruction": "PUSH2 0x08fc"
+                },
+                {
+                    "pc": 115,
+                    "instruction": "MUL"
+                },
+                {
+                    "pc": 116,
+                    "instruction": "SWAP1"
+                },
+                {
+                    "pc": 117,
+                    "instruction": "DUP4"
+                },
+                {
+                    "pc": 118,
+                    "instruction": "SWAP1"
+                },
+                {
+                    "pc": 119,
+                    "instruction": "PUSH1 0x00"
+                },
+                {
+                    "pc": 121,
+                    "instruction": "DUP2"
+                },
+                {
+                    "pc": 122,
+                    "instruction": "DUP2"
+                },
+                {
+                    "pc": 123,
+                    "instruction": "DUP2"
+                },
+                {
+                    "pc": 124,
+                    "instruction": "DUP6"
+                },
+                {
+                    "pc": 125,
+                    "instruction": "DUP9"
+                },
+                {
+                    "pc": 126,
+                    "instruction": "DUP9"
+                },
+                {
+                    "pc": 127,
+                    "instruction": "CALL"
+                },
+                {
+                    "pc": 128,
+                    "instruction": "SWAP4"
+                },
+                {
+                    "pc": 129,
+                    "instruction": "POP"
+                },
+                {
+                    "pc": 130,
+                    "instruction": "POP"
+                },
+                {
+                    "pc": 131,
+                    "instruction": "POP"
+                },
+                {
+                    "pc": 132,
+                    "instruction": "POP"
+                },
+                {
+                    "pc": 133,
+                    "instruction": "ISZERO"
+                },
+                {
+                    "pc": 134,
+                    "instruction": "DUP1"
+                },
+                {
+                    "pc": 135,
+                    "instruction": "ISZERO"
+                },
+                {
+                    "pc": 136,
+                    "instruction": "PUSH1 0x94"
+                },
+                {
+                    "pc": 138,
+                    "instruction": "JUMPI"
+                }
+            ],
+            "background_color": "\"#D3D3D3\"",
+            "outgoing_edges": [
+                {
+                    "color": "\"#5F9747\"",
+                    "target": 148
+                },
+                {
+                    "color": "\"#B70000\"",
+                    "target": 139
+                }
+            ],
+            "last_instruction": "JUMPI",
+            "id": 83
+        },
+        {
+            "instructions": [
+                {
+                    "pc": 13,
+                    "instruction": "POP"
+                },
+                {
+                    "pc": 14,
+                    "instruction": "PUSH1 0x40"
+                },
+                {
+                    "pc": 16,
+                    "instruction": "MLOAD"
+                },
+                {
+                    "pc": 17,
+                    "instruction": "PUSH1 0x02"
+                },
+                {
+                    "pc": 19,
+                    "instruction": "ADDRESS"
+                },
+                {
+                    "pc": 20,
+                    "instruction": "BALANCE"
+                },
+                {
+                    "pc": 21,
+                    "instruction": "DIV"
+                },
+                {
+                    "pc": 22,
+                    "instruction": "SWAP1"
+                },
+                {
+                    "pc": 23,
+                    "instruction": "PUSH20 0x6b6e4b338b4d5f7d847dab5492106751c57b7ff0"
+                },
+                {
+                    "pc": 44,
+                    "instruction": "SWAP1"
+                },
+                {
+                    "pc": 45,
+                    "instruction": "PUSH2 0x08fc"
+                },
+                {
+                    "pc": 48,
+                    "instruction": "DUP4"
+                },
+                {
+                    "pc": 49,
+                    "instruction": "ISZERO"
+                },
+                {
+                    "pc": 50,
+                    "instruction": "MUL"
+                },
+                {
+                    "pc": 51,
+                    "instruction": "SWAP1"
+                },
+                {
+                    "pc": 52,
+                    "instruction": "DUP4"
+                },
+                {
+                    "pc": 53,
+                    "instruction": "SWAP1"
+                },
+                {
+                    "pc": 54,
+                    "instruction": "PUSH1 0x00"
+                },
+                {
+                    "pc": 56,
+                    "instruction": "DUP2"
+                },
+                {
+                    "pc": 57,
+                    "instruction": "DUP2"
+                },
+                {
+                    "pc": 58,
+                    "instruction": "DUP2"
+                },
+                {
+                    "pc": 59,
+                    "instruction": "DUP6"
+                },
+                {
+                    "pc": 60,
+                    "instruction": "DUP9"
+                },
+                {
+                    "pc": 61,
+                    "instruction": "DUP9"
+                },
+                {
+                    "pc": 62,
+                    "instruction": "CALL"
+                },
+                {
+                    "pc": 63,
+                    "instruction": "SWAP4"
+                },
+                {
+                    "pc": 64,
+                    "instruction": "POP"
+                },
+                {
+                    "pc": 65,
+                    "instruction": "POP"
+                },
+                {
+                    "pc": 66,
+                    "instruction": "POP"
+                },
+                {
+                    "pc": 67,
+                    "instruction": "POP"
+                },
+                {
+                    "pc": 68,
+                    "instruction": "ISZERO"
+                },
+                {
+                    "pc": 69,
+                    "instruction": "DUP1"
+                },
+                {
+                    "pc": 70,
+                    "instruction": "ISZERO"
+                },
+                {
+                    "pc": 71,
+                    "instruction": "PUSH1 0x53"
+                },
+                {
+                    "pc": 73,
+                    "instruction": "JUMPI"
+                }
+            ],
+            "background_color": "\"#D3D3D3\"",
+            "outgoing_edges": [
+                {
+                    "color": "\"#5F9747\"",
+                    "target": 83
+                },
+                {
+                    "color": "\"#B70000\"",
+                    "target": 74
+                }
+            ],
+            "last_instruction": "JUMPI",
+            "id": 13
+        },
+        {
+            "instructions": [
+                {
+                    "pc": 150,
+                    "instruction": "JUMPDEST"
+                },
+                {
+                    "pc": 151,
+                    "instruction": "POP"
+                },
+                {
+                    "pc": 152,
+                    "instruction": "STOP"
+                }
+            ],
+            "background_color": "\"#A6EC99\"",
+            "outgoing_edges": [],
+            "last_instruction": "STOP",
+            "id": 150
+        },
+        {
+            "instructions": [
+                {
+                    "pc": 139,
+                    "instruction": "RETURNDATASIZE"
+                },
+                {
+                    "pc": 140,
+                    "instruction": "PUSH1 0x00"
+                },
+                {
+                    "pc": 142,
+                    "instruction": "DUP1"
+                },
+                {
+                    "pc": 143,
+                    "instruction": "RETURNDATACOPY"
+                },
+                {
+                    "pc": 144,
+                    "instruction": "RETURNDATASIZE"
+                },
+                {
+                    "pc": 145,
+                    "instruction": "PUSH1 0x00"
+                },
+                {
+                    "pc": 147,
+                    "instruction": "REVERT"
+                }
+            ],
+            "background_color": "\"#EF8683\"",
+            "outgoing_edges": [],
+            "last_instruction": "REVERT",
+            "id": 139
+        },
+        {
+            "instructions": [
+                {
+                    "pc": 74,
+                    "instruction": "RETURNDATASIZE"
+                },
+                {
+                    "pc": 75,
+                    "instruction": "PUSH1 0x00"
+                },
+                {
+                    "pc": 77,
+                    "instruction": "DUP1"
+                },
+                {
+                    "pc": 78,
+                    "instruction": "RETURNDATACOPY"
+                },
+                {
+                    "pc": 79,
+                    "instruction": "RETURNDATASIZE"
+                },
+                {
+                    "pc": 80,
+                    "instruction": "PUSH1 0x00"
+                },
+                {
+                    "pc": 82,
+                    "instruction": "REVERT"
+                }
+            ],
+            "background_color": "\"#EF8683\"",
+            "outgoing_edges": [],
+            "last_instruction": "REVERT",
+            "id": 74
+        },
+        {
+            "instructions": [
+                {
+                    "pc": 0,
+                    "instruction": "PUSH1 0x80"
+                },
+                {
+                    "pc": 2,
+                    "instruction": "PUSH1 0x40"
+                },
+                {
+                    "pc": 4,
+                    "instruction": "MSTORE"
+                },
+                {
+                    "pc": 5,
+                    "instruction": "PUSH1 0x00"
+                },
+                {
+                    "pc": 7,
+                    "instruction": "CALLVALUE"
+                },
+                {
+                    "pc": 8,
+                    "instruction": "ISZERO"
+                },
+                {
+                    "pc": 9,
+                    "instruction": "ISZERO"
+                },
+                {
+                    "pc": 10,
+                    "instruction": "PUSH1 0x96"
+                },
+                {
+                    "pc": 12,
+                    "instruction": "JUMPI"
+                }
+            ],
+            "background_color": "\"#D3D3D3\"",
+            "outgoing_edges": [
+                {
+                    "color": "\"#5F9747\"",
+                    "target": 150
+                },
+                {
+                    "color": "\"#B70000\"",
+                    "target": 13
+                }
+            ],
+            "last_instruction": "JUMPI",
+            "id": 0,
+            "label": "Entry point 0"
+        }
+    ],
+    "functions_signature": [],
+    "abi_file_path": [],
+    "bytecode_file_path": "execution\\results\\contract-1740826340387\\contract-1740826340387.bytecode",
+    "mnemonic_bytecode_file_path": "execution\\results\\contract-1740826340387\\contract-1740826340387.opcode",
+    "vulnerabilities": {
+        "timestamp_dependency": 0,
+        "tx_origin": 0,
+        "reentrancy": 0
+    },
+    "basic_blocks_pc": "[(148, 150), (83, 148), (83, 139), (13, 83), (13, 74), (0, 150), (0, 13)]",
+    "statistics": {
+        "definitely_unreachable_jumps": 0,
+        "unsound_jumps": 0,
+        "total_opcodes": 102,
+        "maybe_unsound_jumps": 0,
+        "maybe_unreachable_jumps": 0,
+        "total_jumps": 3,
+        "resolved_jumps": 3
+    }
+}

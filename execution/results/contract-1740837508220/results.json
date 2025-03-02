@@ -1,0 +1,38 @@
+{
+    "bytecode": "#java -jar ./evm-lisa-all.jar --basic-blocks -a 0x6c221dea36d48512947bde8aeb58811db50dbf6f --link-unsound-jumps-to-all-jumpdest --bytecode 0x6080604052600034151560965750604051600230310490736b6e4b338b4d5f7d847dab5492106751c57b7ff0906108fc8315029083906000818181858888f193505050501580156053573d6000803e3d6000fd5b5060405173e09f3630663b6b86e82d750b00206f8f8c6f8ad49082156108fc029083906000818181858888f193505050501580156094573d6000803e3d6000fd5b505b500000a165627a7a723058205ff37c6ec0874792b0fd774633f55769070e24b5f659403ce387b838ccb86a710029\n",
+    "address": "contract-1740837508220",
+    "events_signature": [],
+    "mnemonic_bytecode": "'av'(Unknown Opcode)\n'a '(Unknown Opcode)\n'-j'(Unknown Opcode)\n'ar'(Unknown Opcode)\n' .'(Unknown Opcode)\n'/e'(Unknown Opcode)\n'vm'(Unknown Opcode)\n'-l'(Unknown Opcode)\n'is'(Unknown Opcode)\n'a-'(Unknown Opcode)\n'al'(Unknown Opcode)\n'l.'(Unknown Opcode)\n'ja'(Unknown Opcode)\n'r '(Unknown Opcode)\n'--'(Unknown Opcode)\n'ba'(Unknown Opcode)\n'si'(Unknown Opcode)\n'c-'(Unknown Opcode)\n'bl'(Unknown Opcode)\n'oc'(Unknown Opcode)\n'ks'(Unknown Opcode)\n' -'(Unknown Opcode)\n'a '(Unknown Opcode)\n'0x'(Unknown Opcode)\nPUSH13 0x221dea36d48512947bde8aeb58\nDUP2\nSAR\n'b5'(Unknown Opcode)\n'0d'(Unknown Opcode)\n'bf'(Unknown Opcode)\nPUSH16 0x --link-unsound-jumps-to-all-jum\n'pd'(Unknown Opcode)\n'es'(Unknown Opcode)\n't '(Unknown Opcode)\n'--'(Unknown Opcode)\n'by'(Unknown Opcode)\n'te'(Unknown Opcode)\n'co'(Unknown Opcode)\n'de'(Unknown Opcode)\n' 0'(Unknown Opcode)\n'x6'(Unknown Opcode)\nADDMOD\nMOD\nDIV\nSDIV\n'26'(Unknown Opcode)\nSTOP\nSUB\nCOINBASE\nMLOAD\nJUMP\nMULMOD\nPUSH6 0x750604051600\n'23'(Unknown Opcode)\nSUB\nLT\nBLOBHASH\nSMOD\nCALLDATASIZE\n'b6'(Unknown Opcode)\n'e4'(Unknown Opcode)\n'b3'(Unknown Opcode)\nCODESIZE\n'b4'(Unknown Opcode)\n'd5'(Unknown Opcode)\n'f7'(Unknown Opcode)\n'd8'(Unknown Opcode)\nSELFBALANCE\n'da'(Unknown Opcode)\n'b5'(Unknown Opcode)\nBLOBHASH\n'21'(Unknown Opcode)\nMOD\nPUSH22 0x1c57b7ff0906108fc831502908390600081818185888\nDUP16\nNOT\nCALLDATALOAD\nSDIV\nSDIV\nSDIV\nADD\nPC\nADD\nJUMP\nSDIV\nCALLDATALOAD\nPUSH20 0xd6000803e3d6000fd5b5060405173e09f3630663\n'b6'(Unknown Opcode)\n'b8'(Unknown Opcode)\nPUSH15 0x82d750b00206f8f8c6f8ad49082156\nLT\nDUP16\n'c0'(Unknown Opcode)\n'29'(Unknown Opcode)\nADDMOD\nCODECOPY\nMOD\nSTOP\nADDMOD\nXOR\nXOR\nXOR\nPC\nDUP9\nDUP16\nNOT\nCALLDATALOAD\nSDIV\nSDIV\nSDIV\nADD\nPC\nADD\nJUMP\nMULMOD\nGASLIMIT\nPUSH20 0xd6000803e3d6000fd5b505b500000a165627a7a7\n'23'(Unknown Opcode)\nSDIV\nDUP3\nSDIV\nSELFDESTRUCT\nCALLDATACOPY\n'c6'(Unknown Opcode)\n'ec'(Unknown Opcode)\nADDMOD\nPUSH21 0x792b0fd774633f55769070e24b5f659403ce387b83\nDUP13\n'cb'(Unknown Opcode)\nDUP7\n'a7'(Unknown Opcode)\nLT\nMUL\n'9\n'(Unknown Opcode)\n",
+    "abi": [],
+    "working_directory": "execution\\results",
+    "basic_blocks": [{
+        "instructions": [{
+            "pc": 0,
+            "instruction": "INVALID"
+        }],
+        "background_color": "\"#EF8683\"",
+        "outgoing_edges": [],
+        "last_instruction": "INVALID",
+        "id": 0,
+        "label": "Entry point 0"
+    }],
+    "functions_signature": [],
+    "abi_file_path": [],
+    "bytecode_file_path": "execution\\results\\contract-1740837508220\\contract-1740837508220.bytecode",
+    "mnemonic_bytecode_file_path": "execution\\results\\contract-1740837508220\\contract-1740837508220.opcode",
+    "vulnerabilities": {
+        "timestamp_dependency": 0,
+        "tx_origin": 0,
+        "reentrancy": 0
+    },
+    "basic_blocks_pc": "[]",
+    "statistics": {
+        "definitely_unreachable_jumps": 3,
+        "unsound_jumps": 0,
+        "total_opcodes": 99,
+        "maybe_unsound_jumps": 0,
+        "maybe_unreachable_jumps": 0,
+        "total_jumps": 3,
+        "resolved_jumps": 0
+    }
+}
