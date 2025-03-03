@@ -13,4 +13,4 @@ app = create_app()
 # Run the Flask server
 if __name__ == "__main__":
     # Start the server in debug mode for development (optional, turn off for production)
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.run(debug=True, host="0.0.0.0", port=9273)

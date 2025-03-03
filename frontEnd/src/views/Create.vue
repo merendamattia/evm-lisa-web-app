@@ -88,13 +88,6 @@ import { useVuelidate } from '@vuelidate/core';
 import { helpers } from '@vuelidate/validators';
 import BasicBlock from '../models/BasicBlock';
 import CFG from '../components/CFG.vue';
-import Tabs from '../components/Tabs.vue';
-
-const tabsData = reactive([
-    { id: 'tab1', name: 'Tab 1' },
-    { id: 'tab2', name: 'Tab 2' },
-    { id: 'tab3', name: 'Tab 3' }
-]);
 
 const showCFG = ref(false);
 const cfgData = ref<BasicBlock[] | null>(null);
@@ -172,7 +165,7 @@ const handleSubmit = async () => {
     try {
         isSubmitting.value = true;
 
-        const response = await fetch('http://127.0.0.1:5000/run-command', {
+        const response = await fetch('http://127.0.0.1:9273/run-command', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)

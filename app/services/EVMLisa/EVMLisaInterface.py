@@ -25,6 +25,7 @@ class EVMLisaInterface:
             print(result)
 
             output = result.stderr.strip()
+            output = output[output.index("{"):] if "{" in output else ""
 
             try:
                 data = json.loads(output)
