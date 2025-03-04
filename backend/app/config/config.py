@@ -2,7 +2,7 @@ import os
 
 class Config:
     # Flask configuration
-    SECRET_KEY = os.getenv("SECRET_KEY", "evmlisasecretkey")
+    SECRET_KEY = os.getenv("SECRET_KEY", "evmLiSAsecretkey")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3')
 

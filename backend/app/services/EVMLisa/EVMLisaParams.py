@@ -1,7 +1,7 @@
-from services.EVMLisa.EVMLisaValidator import EVMLisaValidator 
+from services.EVMLiSA.EVMLiSAValidator import EVMLiSAValidator 
 from flask import jsonify
 
-class EVMLisaParams :
+class EVMLiSAParams :
 
     def __init__(self, link_unsound_jumps = False, dot = False, bytecode = '', address = '') :
 
@@ -15,7 +15,7 @@ class EVMLisaParams :
         cmd = list()
 
         if self.address : 
-            if EVMLisaValidator.is_valid_evm_address(self.address): 
+            if EVMLiSAValidator.is_valid_evm_address(self.address): 
                 cmd.append(f'-a')
                 cmd.append(f'{self.address}')
             else:
@@ -28,7 +28,7 @@ class EVMLisaParams :
             cmd.append('--dot')
 
         if self.bytecode:
-            if EVMLisaValidator.is_valid_bytecode(self.bytecode):
+            if EVMLiSAValidator.is_valid_bytecode(self.bytecode):
                 cmd.append(f'--bytecode')
                 cmd.append(f'{self.bytecode}')
             else:

@@ -2,7 +2,7 @@ import re
 import os
 
 
-class EVMLisaValidator:
+class EVMLiSAValidator:
     
     # Pattern to validate an Ethereum (EVM) address
     EVM_ADDRESS_PATTERN = re.compile(r"^0x[a-fA-F0-9]{40}$")
@@ -18,7 +18,7 @@ class EVMLisaValidator:
 
         print(address)
 
-        return bool(address) and bool(EVMLisaValidator.EVM_ADDRESS_PATTERN.match(address))
+        return bool(address) and bool(EVMLiSAValidator.EVM_ADDRESS_PATTERN.match(address))
 
     @staticmethod
     def is_valid_filepath(filepath):

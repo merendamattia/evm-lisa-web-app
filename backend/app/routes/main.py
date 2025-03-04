@@ -1,6 +1,6 @@
 from flask import Blueprint, request, render_template, current_app, jsonify, send_file
 from extensions import db
-from services.EVMLisa.EVMLisaParams import EVMLisaParams
+from services.EVMLiSA.EVMLiSAParams import EVMLiSAParams
 from flask_cors import cross_origin
 
 
@@ -17,13 +17,13 @@ def run_command():
 
     try:
 
-        params = EVMLisaParams(
+        params = EVMLiSAParams(
             address=address, 
             bytecode=bytecode, 
             link_unsound_jumps=True
         ) 
 
-        result, status_code = current_app.evmLisaInterface.run_command(params)
+        result, status_code = current_app.evmLiSAInterface.run_command(params)
 
         print(type(result))
 

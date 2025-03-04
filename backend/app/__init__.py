@@ -3,7 +3,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from config.config import Config
 from extensions import db
-from services.EVMLisa.EVMLisaInterface import EVMLisaInterface
+from services.EVMLiSA.EVMLiSAInterface import EVMLiSAInterface
 from flask_cors import CORS
 
 
@@ -16,7 +16,7 @@ def create_app():
     db.init_app(app)
     CORS(app)  
 
-    app.evmLisaInterface = EVMLisaInterface('./evm-lisa/evm-lisa-all.jar')
+    app.evmLiSAInterface = EVMLiSAInterface('./evm-LiSA/evm-LiSA-all.jar')
 
     from routes import register_routes
     register_routes(app)
