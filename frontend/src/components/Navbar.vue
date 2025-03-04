@@ -1,13 +1,16 @@
 <template>
-  
 
-  <nav class="bg-white border-gray-200">
-  <div class="max-w-screen-xl flex items-center justify-center mx-auto p-4">
-    <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img src="/logo.png" class="h-8" alt="Flowbite Logo" />
-    </a>
-  </div>
-</nav>
-
+  <nav class="bg-gray-100 w-full z-20 top-0 start-0 border-b border-gray-200 mb-3">
+    <div class="container flex flex-wrap justify-between mx-auto p-4">
+      <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="/logo.png" class="h-12" alt="EVMLiSA Logo">
+      </a>
+      <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+        <button type="button"
+          class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center">Etherscan
+          API key</button>
+      </div>
+    </div>
+  </nav>
 
 </template>
