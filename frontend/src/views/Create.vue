@@ -56,7 +56,9 @@
                     <CFG v-show="showCFG && cfgData" :data="cfgData" />
                 </template>
                 <template #json>
-                    <JSONViewer :data="JSONViewerData" />
+                    <div class="json-scroll-container" style="width: 100%; overflow-x: scroll; overflow-y: scroll; height: 80vh;">
+                        <JSONViewer :data="JSONViewerData" />
+                    </div>
                 </template>
             </Tabs>
         </div>
@@ -202,5 +204,36 @@ const handleSubmit = async () => {
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: 100px;
+}
+
+.json-scroll-container::-webkit-scrollbar {
+  width: 12px; /* Larghezza della scrollbar verticale */
+  height: 12px; /* Altezza della scrollbar orizzontale */
+  border-radius: 10px; /* Arrotonda i bordi della scrollbar */
+}
+
+.json-scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Colore della traccia della scrollbar */
+  border-radius: 10px; /* Arrotonda i bordi della traccia */
+}
+
+.json-scroll-container::-webkit-scrollbar-thumb {
+  background: green; /* Colore della parte mobile (thumb) della scrollbar */
+  border-radius: 10px; /* Arrotonda i bordi del thumb */
+}
+
+.json-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Colore del thumb quando si passa sopra con il mouse */
+}
+
+.json-scroll-container::-webkit-scrollbar-corner {
+  background: transparent; /* Angolo della scrollbar (dove si incontrano x e y) */
+}
+
+/* Per Firefox */
+.json-scroll-container {
+  scrollbar-width: thin; /* Imposta la larghezza della scrollbar */
+  scrollbar-color: green #f1f1f1; /* Colori del thumb e della traccia */
+  border-radius: 10px; /* Arrotonda i bordi del contenitore */
 }
 </style>

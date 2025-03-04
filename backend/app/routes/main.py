@@ -1,10 +1,18 @@
-from flask import Blueprint, request, render_template, current_app, jsonify, send_file
-from extensions import db
+from flask import Blueprint, request, current_app, jsonify
 from services.EVMLiSA.EVMLiSAParams import EVMLiSAParams
 from flask_cors import cross_origin
 
 
 main_bp = Blueprint("main", __name__)
+
+@main_bp.route("/save-api-key", methods=["POST"])
+def save_api_key_route():
+    data = request.json
+    if "api_key" not in data:
+        return jsonify({"error": "API Key non fornita"}), 400
+    
+    current_app.evmLiSAInterface.save_api_key(data["api_key"])
+    return jsonify({"message": "API Key salvata con successo!"}), 200
 
 @main_bp.route("/run-command", methods=["POST"])
 @cross_origin()

@@ -1,28 +1,71 @@
 import subprocess
 import json
+import os
+from flask import Flask, request, jsonify
+from cryptography.fernet import Fernet
 
 class EVMLiSAInterface:
     # Singleton pattern
     _instance = None
     
+    class APIKeyManager:
+        SECRET_KEY_FILE = "crypto/secret.key"
+        API_KEY_FILE = "crypto/api_key.key"  # Cambiato da 'api_key.json' a 'api_key.txt'
+        _instance = None
+
+        def __new__(cls):
+            if cls._instance is None:
+                cls._instance = super().__new__(cls)
+            return cls._instance
+
+        def __init__(self):
+            if not hasattr(self, 'initialized'):
+                # Crea la cartella "crypto" se non esiste
+                if not os.path.exists(os.path.dirname(self.SECRET_KEY_FILE)):
+                    os.makedirs(os.path.dirname(self.SECRET_KEY_FILE))
+                
+                if not os.path.exists(self.SECRET_KEY_FILE):
+                    with open(self.SECRET_KEY_FILE, "wb") as f:
+                        f.write(Fernet.generate_key())
+                with open(self.SECRET_KEY_FILE, "rb") as f:
+                    self.cipher = Fernet(f.read())
+                self.initialized = True
+
+        def save_api_key(self, api_key):
+            encrypted_key = self.cipher.encrypt(api_key.encode())
+            # Crea la cartella "crypto" se non esiste
+            if not os.path.exists(os.path.dirname(self.API_KEY_FILE)):
+                os.makedirs(os.path.dirname(self.API_KEY_FILE))
+            with open(self.API_KEY_FILE, "wb") as f:  # Salva come binario
+                f.write(encrypted_key)  # Scrivi la chiave cifrata direttamente nel file di testo
+
+        def get_api_key(self):
+            if not os.path.exists(self.API_KEY_FILE):
+                return None
+            with open(self.API_KEY_FILE, "rb") as f:  # Leggi come binario
+                encrypted_key = f.read()  # Leggi la chiave cifrata
+                return self.cipher.decrypt(encrypted_key).decode()  # Decifra e restituisci la chiave
+    
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
-            cls._instance = super(EVMLiSAInterface, cls).__new__(cls)  # Correzione qui
+            cls._instance = super(EVMLiSAInterface, cls).__new__(cls)
         return cls._instance
 
     def __init__(self, jar_path: str):
-        if not hasattr(self, 'initialized'):  
+        if not hasattr(self, 'initialized'):
             self.jar_path = jar_path
+            self.api_key_manager = self.APIKeyManager()
             self.initialized = True
-    
+
+    def save_api_key (self, api_key) : 
+        self.api_key_manager.save_api_key(api_key)
+
     def run_command(self, params):
         try:
-            cmd = ["java", "-jar", self.jar_path]
+            cmd = ["java", "-jar", self.jar_path, "--etherscan-api-key", self.api_key_manager.get_api_key()]
             cmd.extend(params.build_command())
 
             result = subprocess.run(cmd, capture_output=True, text=True, check=True)
-
-            print(result)
 
             output = result.stderr.strip()
             output = output[output.index("{"):] if "{" in output else ""
