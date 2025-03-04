@@ -51,34 +51,15 @@
                 </button>
             </form>
 
-
+            <Tabs v-show="showCFG && cfgData" :tabs="tabs">
+                <template #cfg>
+                    <CFG v-show="showCFG && cfgData" :data="cfgData" />
+                </template>
+                <template #json>
+                    <JSONViewer :data="JSONViewerData" />
+                </template>
+            </Tabs>
         </div>
-
-        
-        
-
-<ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
-    <li class="me-2">
-        <a href="#" aria-current="page" class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500">Profile</a>
-    </li>
-    <li class="me-2">
-        <a href="#" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Dashboard</a>
-    </li>
-    <li class="me-2">
-        <a href="#" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Settings</a>
-    </li>
-    <li class="me-2">
-        <a href="#" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Contacts</a>
-    </li>
-    <li>
-        <a class="inline-block p-4 text-gray-400 rounded-t-lg cursor-not-allowed dark:text-gray-500">Disabled</a>
-    </li>
-</ul>
-
-
-        <CFG v-show="showCFG && cfgData" :data="cfgData" />
-
-
     </section>
 </template>
 
@@ -89,15 +70,21 @@ import { helpers } from '@vuelidate/validators';
 import BasicBlock from '../models/BasicBlock';
 import CFG from '../components/CFG.vue';
 import Tabs from '../components/Tabs.vue';
+import JSONViewer from '../components/JSONViewer.vue';
 
-const tabsData = reactive([
-    { id: 'tab1', name: 'Tab 1' },
-    { id: 'tab2', name: 'Tab 2' },
-    { id: 'tab3', name: 'Tab 3' }
-]);
+interface ApiResponse {
+  // Definisci qui la struttura attesa dei dati (opzionale)
+  [key: string]: any;
+}
+
+const tabs = [
+    { label: 'CFG', slotName: 'cfg' },
+    { label: 'JSON', slotName: 'json' },
+];
 
 const showCFG = ref(false);
 const cfgData = ref<BasicBlock[] | null>(null);
+const JSONViewerData = ref<ApiResponse | null>(null);
 const isSubmitting = ref(false);
 
 const ethAddressRegex = /^0x[a-fA-F0-9]{40}$/;
@@ -181,6 +168,8 @@ const handleSubmit = async () => {
         if (!response.ok) throw new Error('Submission failed');
         const data = await response.json();
 
+        JSONViewerData.value = data;
+
         cfgData.value = data.basic_blocks.map((block: any) =>
             new BasicBlock(
                 block.label,
@@ -206,3 +195,12 @@ const handleSubmit = async () => {
     }
 };
 </script>
+
+<style lang="css" scoped>
+.bodyTabs {
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 100px;
+}
+</style>
