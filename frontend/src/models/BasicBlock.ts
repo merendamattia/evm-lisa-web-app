@@ -1,4 +1,4 @@
-type Edge = { id: string }; // Definizione di Edge, se necessario
+type Edge = { id: string }; 
 
 export default class BasicBlock {
     label:string;

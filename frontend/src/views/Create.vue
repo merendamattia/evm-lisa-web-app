@@ -60,6 +60,9 @@
                         <JSONViewer :data="JSONViewerData" />
                     </div>
                 </template>
+                <template #disassembled>
+                    <Disassembled :data="cfgData" />
+                </template>
             </Tabs>
         </div>
     </section>
@@ -73,6 +76,7 @@ import BasicBlock from '../models/BasicBlock';
 import CFG from '../components/CFG.vue';
 import Tabs from '../components/Tabs.vue';
 import JSONViewer from '../components/JSONViewer.vue';
+import Disassembled from '../components/Disassembled.vue';
 
 interface ApiResponse {
   // Definisci qui la struttura attesa dei dati (opzionale)
@@ -82,6 +86,7 @@ interface ApiResponse {
 const tabs = [
     { label: 'CFG', slotName: 'cfg' },
     { label: 'JSON', slotName: 'json' },
+    { label: 'Disassembled', slotName: 'disassembled' },
 ];
 
 const showCFG = ref(false);
@@ -184,8 +189,7 @@ const handleSubmit = async () => {
             )
         );
 
-        formData.address = '';
-        formData.bytecode = '';
+        console.log(cfgData);
         v$.value.$reset();
         showCFG.value = true;
 

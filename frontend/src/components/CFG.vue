@@ -98,7 +98,6 @@ const mapDataToFlow = async () => {
     await nextTick()
 
     // Debugging: Stampa tutti i nodi creati
-    console.log('Nodi creati:', nodes.value)
 
     // Crea gli edge dopo che i nodi sono stati creati
     const newEdges = props.data.flatMap((block) =>
@@ -107,7 +106,6 @@ const mapDataToFlow = async () => {
             const targetId = outgoingEdge.target.toString()
             const strokeColor = outgoingEdge.color;
 
-            console.log(strokeColor)
 
             if (
                 nodes.value.some(n => n.id === sourceId) &&
@@ -132,7 +130,6 @@ const mapDataToFlow = async () => {
     edges.value = newEdges
 
     // Debugging: Stampa gli archi creati
-    console.log('Archi creati:', edges.value)
 }
 
 
