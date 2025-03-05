@@ -1,6 +1,11 @@
 <template>
     <section class="bg-white">
         <div class="px-4 mx-auto">
+            <h1 class="mb-4 text-xl font-bold text-gray-900">EVMLiSA: an abstract interpretation-based static analyzer for EVM bytecode</h1>
+            <p>EVMLiSA is a static analyzer based on abstract interpretation for EVM bytecode of smart contracts deployed on Ethereum blockchain and built upon LiSA. Given a EVM bytecode smart contract, EVMLiSA builds a sound and precise control-flow graph of the smart contract.</p>
+
+            <hr class="mb-4 mt-4">
+
             <h1 class="mb-4 text-xl font-bold text-gray-900">Run new EVM analysis</h1>
 
             <form @submit.prevent="handleSubmit">
