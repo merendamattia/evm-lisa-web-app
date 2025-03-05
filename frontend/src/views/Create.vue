@@ -22,7 +22,7 @@
                     <!-- Bytecode Field -->
                     <div class="sm:col-span-2">
                         <label for="bytecode" class="block mb-2 text-sm font-medium text-gray-900">
-                            Contract Deployed Bytecode<span class="text-red-500"> *</span>
+                            Contract Bytecode<span class="text-red-500"> *</span>
                         </label>
                         <textarea id="bytecode" v-model="formData.bytecode" rows="8"
                             :class="{ 'border-red-500': v$.bytecode.$error }"
