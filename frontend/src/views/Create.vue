@@ -1,8 +1,20 @@
 <template>
     <section class="bg-white">
         <div class="px-4 mx-auto">
-            <h1 class="mb-4 text-xl font-bold text-gray-900">EVMLiSA: an abstract interpretation-based static analyzer for EVM bytecode</h1>
-            <p>EVMLiSA is a static analyzer based on abstract interpretation for EVM bytecode of smart contracts deployed on Ethereum blockchain and built upon LiSA. Given a EVM bytecode smart contract, EVMLiSA builds a sound and precise control-flow graph of the smart contract.</p>
+            <h1 class="mb-4 text-xl font-bold text-gray-900">EVMLiSA: an abstract interpretation-based static analyzer
+                for EVM bytecode</h1>
+            <p>EVMLiSA is a static analyzer based on abstract interpretation for EVM bytecode of smart contracts
+                deployed on Ethereum blockchain and built upon LiSA. Given a EVM bytecode smart contract, EVMLiSA builds
+                a sound and precise control-flow graph of the smart contract.</p>
+
+            <div class="flex space-x-2 mb-4 mt-2">
+                <img src="https://img.shields.io/github/actions/workflow/status/lisa-analyzer/evm-lisa/gradle-master.yml"
+                    alt="GitHub Actions Workflow Status" />
+                <img src="https://img.shields.io/github/last-commit/lisa-analyzer/evm-lisa" alt="GitHub last commit" />
+                <img src="https://img.shields.io/github/commit-activity/y/lisa-analyzer/evm-lisa"
+                    alt="GitHub commit activity" />
+                <img src="https://img.shields.io/github/issues-raw/lisa-analyzer/evm-lisa" alt="GitHub issues" />
+            </div>
 
             <hr class="mb-4 mt-4">
 
@@ -64,7 +76,8 @@
                     <Disassembled :data="cfgData" />
                 </template>
                 <template #json>
-                    <div class="json-scroll-container" style="width: 100%; overflow-x: scroll; overflow-y: scroll; height: 80vh;">
+                    <div class="json-scroll-container"
+                        style="width: 100%; overflow-x: scroll; overflow-y: scroll; height: 80vh;">
                         <JSONViewer :data="JSONViewerData" />
                     </div>
                 </template>
@@ -84,8 +97,8 @@ import JSONViewer from '../components/JSONViewer.vue';
 import Disassembled from '../components/Disassembled.vue';
 
 interface ApiResponse {
-  // Definisci qui la struttura attesa dei dati (opzionale)
-  [key: string]: any;
+    // Definisci qui la struttura attesa dei dati (opzionale)
+    [key: string]: any;
 }
 
 const tabs = [
@@ -218,33 +231,45 @@ const handleSubmit = async () => {
 }
 
 .json-scroll-container::-webkit-scrollbar {
-  width: 12px; /* Larghezza della scrollbar verticale */
-  height: 12px; /* Altezza della scrollbar orizzontale */
-  border-radius: 10px; /* Arrotonda i bordi della scrollbar */
+    width: 12px;
+    /* Larghezza della scrollbar verticale */
+    height: 12px;
+    /* Altezza della scrollbar orizzontale */
+    border-radius: 10px;
+    /* Arrotonda i bordi della scrollbar */
 }
 
 .json-scroll-container::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Colore della traccia della scrollbar */
-  border-radius: 10px; /* Arrotonda i bordi della traccia */
+    background: #f1f1f1;
+    /* Colore della traccia della scrollbar */
+    border-radius: 10px;
+    /* Arrotonda i bordi della traccia */
 }
 
 .json-scroll-container::-webkit-scrollbar-thumb {
-  background: green; /* Colore della parte mobile (thumb) della scrollbar */
-  border-radius: 10px; /* Arrotonda i bordi del thumb */
+    background: green;
+    /* Colore della parte mobile (thumb) della scrollbar */
+    border-radius: 10px;
+    /* Arrotonda i bordi del thumb */
 }
 
 .json-scroll-container::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Colore del thumb quando si passa sopra con il mouse */
+    background: #555;
+    /* Colore del thumb quando si passa sopra con il mouse */
 }
 
 .json-scroll-container::-webkit-scrollbar-corner {
-  background: transparent; /* Angolo della scrollbar (dove si incontrano x e y) */
+    background: transparent;
+    /* Angolo della scrollbar (dove si incontrano x e y) */
 }
 
 /* Per Firefox */
 .json-scroll-container {
-  scrollbar-width: thin; /* Imposta la larghezza della scrollbar */
-  scrollbar-color: green #f1f1f1; /* Colori del thumb e della traccia */
-  border-radius: 10px; /* Arrotonda i bordi del contenitore */
+    scrollbar-width: thin;
+    /* Imposta la larghezza della scrollbar */
+    scrollbar-color: green #f1f1f1;
+    /* Colori del thumb e della traccia */
+    border-radius: 10px;
+    /* Arrotonda i bordi del contenitore */
 }
 </style>
