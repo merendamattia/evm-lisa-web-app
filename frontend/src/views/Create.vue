@@ -55,13 +55,13 @@
                 <template #cfg>
                     <CFG v-show="showCFG && cfgData" :data="cfgData" />
                 </template>
+                <template #disassembled>
+                    <Disassembled :data="cfgData" />
+                </template>
                 <template #json>
                     <div class="json-scroll-container" style="width: 100%; overflow-x: scroll; overflow-y: scroll; height: 80vh;">
                         <JSONViewer :data="JSONViewerData" />
                     </div>
-                </template>
-                <template #disassembled>
-                    <Disassembled :data="cfgData" />
                 </template>
             </Tabs>
         </div>
@@ -165,6 +165,8 @@ const handleSubmit = async () => {
 
     try {
         isSubmitting.value = true;
+
+        console.log(formData);
 
         const response = await fetch('http://127.0.0.1:9273/run-command', {
             method: 'POST',

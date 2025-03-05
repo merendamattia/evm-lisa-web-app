@@ -21,10 +21,9 @@ const saveApiKey = async () => {
         const data = await response.json();
 
         if (response.ok) {
-            alert('API Key salvata con successo!');
             toggleModal();
         } else {
-            alert(`Errore: ${data.error}`);
+            alert(`Error: ${data.error}`);
         }
     } catch (error) {
         alert('Errore durante la comunicazione con il server.');
@@ -61,14 +60,14 @@ const saveApiKey = async () => {
                 <form class="space-y-4" @submit.prevent="saveApiKey">
                     <div>
                         <label for="apiKey" class="block mb-2 text-sm font-medium text-gray-900">Etherscan API Key</label>
-                        <input v-model="apiKey" type="password" name="apiKey" id="apiKey" placeholder="Inserisci la tua API key..." 
+                        <input v-model="apiKey" type="password" name="apiKey" id="apiKey" placeholder="Insert your Etherscan API key..." 
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" required />
                     </div>
                     <button type="submit" class="w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                         Save API Key
                     </button>
                     <div class="text-sm font-medium text-gray-500">
-                        Don't have a Etherscan API key ? <a href="https://etherscan.io/" class="text-green-700 hover:underline">Create one now!</a>
+                        Don't you have an Etherscan API key? <a href="https://etherscan.io/myapikey" class="text-green-700 hover:underline">Create it now!</a>
                     </div>
                 </form>
             </div>

@@ -304,6 +304,20 @@ watch(() => props.data, mapDataToFlow, { immediate: true })
                                     </td>
                                     <td class="px-6 py-4 text-white">Function Entrypoint</td>
                                 </tr>
+                                <tr class="border-b dark:border-gray-700 border-gray-200 bg-purple-100 dark:bg-purple-900">
+                                    <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">Purple
+                                        Background</th>
+                                    <td class="px-6 py-4">
+                                        <svg class="w-6 h-6 text-white" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                            viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M11 9h6m-6 3h6m-6 3h6M6.996 9h.01m-.01 3h.01m-.01 3h.01M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+                                        </svg>
+                                    </td>
+                                    <td class="px-6 py-4 text-white">Event Entrypoint</td>
+                                </tr>
 
                             </tbody>
                         </table>

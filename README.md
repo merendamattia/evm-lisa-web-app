@@ -1,3 +1,4 @@
+# Via bash
 ## Start the backend
 From a new bash, run:
 ```bash
@@ -14,6 +15,21 @@ From a new bash, run:
 cd frontend
 npm install
 npm run dev
+```
+
+then, you will be able to use the web-app at [http://localhost](http://localhost:5173/).
+
+---
+
+# Via Docker
+Start the containers:
+```bash
+docker compose up --build -d
+```
+
+Stop the containers:
+```bash
+docker compose down
 ```
 
 then, you will be able to use the web-app at [http://localhost](http://localhost:5173/).
