@@ -64,7 +64,7 @@
                             d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
                             fill="currentColor" />
                     </svg>
-                    {{ isSubmitting ? 'Processing...' : 'Start analysis' }}
+                    {{ isSubmitting ? processingText : 'Start analysis' }}
                 </button>
             </form>
 
@@ -95,6 +95,20 @@ import CFG from '../components/CFG.vue';
 import Tabs from '../components/Tabs.vue';
 import JSONViewer from '../components/JSONViewer.vue';
 import Disassembled from '../components/Disassembled.vue';
+import { useToastStore } from '../stores/toastStore';
+import { usePopupStore } from '../stores/popupStores';
+
+const popupStore = usePopupStore();
+const toastStore = useToastStore();
+
+const triggerErrorPopup = (errorMessage : string) => {
+    popupStore.showPopup(errorMessage);
+}
+
+const triggerToast = () => {
+    toastStore.showToast();
+    toastStore.setText('Analysis run successfully!')
+};
 
 interface ApiResponse {
     // Definisci qui la struttura attesa dei dati (opzionale)
@@ -111,6 +125,7 @@ const showCFG = ref(false);
 const cfgData = ref<BasicBlock[] | null>(null);
 const JSONViewerData = ref<ApiResponse | null>(null);
 const isSubmitting = ref(false);
+const processingText = ref('')
 
 const ethAddressRegex = /^0x[a-fA-F0-9]{40}$/;
 const bytecodeRegex = /^0x([a-fA-F0-9]{2})+$/;
@@ -173,6 +188,7 @@ const validateForm = () => {
 const handleSubmit = async () => {
     const isValid = await v$.value.$validate();
     const formErrors = validateForm();
+    let timerId = setInterval(printCurrentTime, 10);
 
     if (!isValid || formErrors.length > 0) {
         if (formErrors.length > 0) {
@@ -192,8 +208,14 @@ const handleSubmit = async () => {
             body: JSON.stringify(formData)
         });
 
-        if (!response.ok) throw new Error('Submission failed');
+        resetTimer(timerId);
+
         const data = await response.json();
+
+        if (!response.ok) {         
+            triggerErrorPopup(data.error); 
+            throw new Error(data.error || "Unknow error");
+        }
 
         JSONViewerData.value = data;
 
@@ -209,17 +231,48 @@ const handleSubmit = async () => {
             )
         );
 
+        triggerToast();
         console.log(cfgData);
         v$.value.$reset();
         showCFG.value = true;
 
     } catch (error) {
         console.error('Error:', error);
-        alert(error instanceof Error ? error.message : 'An unexpected error occurred');
+        console.error(error instanceof Error ? error.message : 'An unexpected error occurred');
     } finally {
         isSubmitting.value = false;
     }
 };
+
+
+let timeInHundredths = 0; // Inizializza il tempo a 0 centesimi di secondo
+
+function resetTimer (timerId : number) {
+
+timeInHundredths = 0;
+clearInterval(timerId);
+
+}
+
+function printCurrentTime() {
+    // Calcola i minuti, secondi e centesimi di secondo
+    const minutes = Math.floor(timeInHundredths / 6000); // 6000 centesimi in un minuto
+    const seconds = Math.floor((timeInHundredths % 6000) / 100); // Resto diviso 100 per ottenere i secondi
+    const hundredths = timeInHundredths % 100; // Restante per i centesimi
+
+    // Format del tempo, ma senza i minuti se sono 0
+    let formattedTime = `${String(seconds).padStart(2, '0')}.${String(hundredths).padStart(2, '0')}`;
+
+    // Se i minuti sono diversi da 0, includili nel formato
+    if (minutes > 0) {
+        formattedTime = `${String(minutes).padStart(2, '0')}:${formattedTime}`;
+    }
+
+    processingText.value = `Processing... ${formattedTime}`;
+
+    // Incrementa il contatore ogni 10 millisecondi
+    timeInHundredths++;
+}
 </script>
 
 <style lang="css" scoped>

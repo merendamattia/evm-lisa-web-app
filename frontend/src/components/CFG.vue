@@ -138,7 +138,7 @@ watch(() => props.data, mapDataToFlow, { immediate: true })
 
 <template>
     <div class="mt-5" style="width: 100%; height: 80vh; border-radius: 15px;">
-        <VueFlow :nodes="nodes" :edges="edges" class="basic-flow" :default-viewport="{ zoom: 1.5 }" :min-zoom="0.2"
+        <VueFlow :nodes="nodes" :edges="edges" class="basic-flow" :default-viewport="{ zoom: 0.2 }" :min-zoom="0.2"
             :max-zoom="4" @nodes-initialized="layoutGraph('TB')">
             <template #node-custom="nodeProps">
                 <CustomNode v-bind="nodeProps" />

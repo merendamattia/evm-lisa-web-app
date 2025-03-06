@@ -33,10 +33,10 @@ def run_command():
 
         result, status_code = current_app.evmLiSAInterface.run_command(params)
 
-        print(type(result))
-
         return jsonify(result), status_code
     
     except Exception as e:
+
+        print(str(e))
     
         return jsonify({"error": str(e)}), 500
