@@ -41,7 +41,7 @@
                         <label for="bytecode" class="block mb-2 text-sm font-medium text-gray-900">
                             Contract Bytecode<span class="text-red-500"> *</span>
                         </label>
-                        <textarea id="bytecode" v-model="formData.bytecode" rows="8"
+                        <textarea id="bytecode" v-model="formData.bytecode" rows="4"
                             :class="{ 'border-red-500': v$.bytecode.$error }"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-50"
                             placeholder="Enter contract bytecode here" @blur="v$.bytecode.$touch()"></textarea>
@@ -64,7 +64,7 @@
                             d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
                             fill="currentColor" />
                     </svg>
-                    {{ isSubmitting ? processingText : 'Start analysis' }}
+                    {{ isSubmitting ? processingText : 'Run analysis' }}
                 </button>
             </form>
 
@@ -87,6 +87,11 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * Vue.js component that handles Ethereum smart contract analysis.
+ * It allows users to input an Ethereum address or bytecode, validates the input, and sends a request to an analysis server.
+ */
+
 import { reactive, ref, watch, computed } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { helpers } from '@vuelidate/validators';
@@ -96,29 +101,36 @@ import Tabs from '../components/Tabs.vue';
 import JSONViewer from '../components/JSONViewer.vue';
 import Disassembled from '../components/Disassembled.vue';
 import { useToastStore } from '../stores/toastStore';
-import { usePopupStore } from '../stores/popupStores';
+import { usePopupStore } from '../stores/errorPopupStores';
 
-const popupStore = usePopupStore();
+const errorPopupStore = usePopupStore();
 const toastStore = useToastStore();
 
+/**
+ * Triggers an error popup with the given message.
+ * @param {string} errorMessage - The error message to display.
+ */
 const triggerErrorPopup = (errorMessage : string) => {
-    popupStore.showPopup(errorMessage);
+    errorPopupStore.showPopup(errorMessage);
 }
 
+/**
+ * Displays a toast notification indicating the analysis was successful.
+ */
 const triggerToast = () => {
     toastStore.showToast();
     toastStore.setText('Analysis run successfully!')
 };
 
 interface ApiResponse {
-    // Definisci qui la struttura attesa dei dati (opzionale)
     [key: string]: any;
 }
 
+/** Tabs configuration */
 const tabs = [
     { label: 'CFG', slotName: 'cfg' },
-    { label: 'JSON', slotName: 'json' },
     { label: 'Disassembled', slotName: 'disassembled' },
+    { label: 'JSON', slotName: 'json' },
 ];
 
 const showCFG = ref(false);
@@ -127,6 +139,7 @@ const JSONViewerData = ref<ApiResponse | null>(null);
 const isSubmitting = ref(false);
 const processingText = ref('')
 
+/** Regex for Ethereum address and bytecode validation */
 const ethAddressRegex = /^0x[a-fA-F0-9]{40}$/;
 const bytecodeRegex = /^0x([a-fA-F0-9]{2})+$/;
 
@@ -135,12 +148,29 @@ const formData = reactive({
     bytecode: ''
 });
 
-// Custom validators
+/**
+ * Validates Ethereum address format.
+ * @param {string} value - The input value.
+ * @returns {boolean} True if valid, false otherwise.
+ */
 const ethAddress = (value: string) => !value || ethAddressRegex.test(value);
+
+/**
+ * Validates Ethereum bytecode format.
+ * @param {string} value - The input value.
+ * @returns {boolean} True if valid, false otherwise.
+ */
 const validBytecode = (value: string) => !value || bytecodeRegex.test(value);
+
+/**
+ * Ensures at least one field (address or bytecode) is filled.
+ * @returns {boolean} True if at least one field is filled, false otherwise.
+ */
 const atLeastOne = () => !!formData.address || !!formData.bytecode;
 
-// Define validation rules
+/**
+ * Validation rules for form fields.
+ */
 const rules = computed(() => {
     return {
         address: {
@@ -155,36 +185,44 @@ const rules = computed(() => {
     };
 });
 
-// Create Vuelidate instance
 const v$ = useVuelidate(rules, formData);
 
-// Watch for address changes - clear bytecode if address has value
+/**
+ * Watches address field and clears bytecode if address is entered.
+ */
 watch(() => formData.address, (newVal) => {
     if (newVal) {
-        // Only clear bytecode when address has some content
         formData.bytecode = '';
     }
 }, { immediate: true });
 
-// Watch for bytecode changes - clear address if bytecode has value
+/**
+ * Watches bytecode field and clears address if bytecode is entered.
+ */
 watch(() => formData.bytecode, (newVal) => {
     if (newVal) {
-        // Only clear address when bytecode has some content
         formData.address = '';
     }
 }, { immediate: true });
 
-// Handle form-level validations manually
+/**
+ * Validates the form manually.
+ * @returns {string[]} Array of error messages, if any.
+ */
 const validateForm = () => {
     const errors = [];
 
     if (!atLeastOne()) {
-        errors.push('EVM address or bytecode must be provided');
+        errors.push('EVM address or bytecode must be provided.');
     }
 
     return errors;
 };
 
+/**
+ * Handles form submission.
+ * Sends data to the backend API and processes the response.
+ */
 const handleSubmit = async () => {
     const isValid = await v$.value.$validate();
     const formErrors = validateForm();
@@ -192,7 +230,8 @@ const handleSubmit = async () => {
 
     if (!isValid || formErrors.length > 0) {
         if (formErrors.length > 0) {
-            alert(formErrors.join('\n'));
+            errorPopupStore.message = formErrors.join('\n');
+            errorPopupStore.showPopup();
         }
         return;
     }
@@ -245,34 +284,36 @@ const handleSubmit = async () => {
 };
 
 
-let timeInHundredths = 0; // Inizializza il tempo a 0 centesimi di secondo
+let timeInHundredths = 0;
 
+/**
+ * Resets the processing timer.
+ * @param {number} timerId - The timer ID to clear.
+ */
 function resetTimer (timerId : number) {
-
-timeInHundredths = 0;
-clearInterval(timerId);
-
+    timeInHundredths = 0;
+    clearInterval(timerId);
 }
 
+/**
+ * Prints the elapsed processing time in the format MM:SS.D
+ */
 function printCurrentTime() {
-    // Calcola i minuti, secondi e centesimi di secondo
-    const minutes = Math.floor(timeInHundredths / 6000); // 6000 centesimi in un minuto
-    const seconds = Math.floor((timeInHundredths % 6000) / 100); // Resto diviso 100 per ottenere i secondi
-    const hundredths = timeInHundredths % 100; // Restante per i centesimi
+    const minutes = Math.floor(timeInHundredths / 6000); 
+    const seconds = Math.floor((timeInHundredths % 6000) / 100); 
+    const tenths = Math.floor((timeInHundredths % 100) / 10);
 
-    // Format del tempo, ma senza i minuti se sono 0
-    let formattedTime = `${String(seconds).padStart(2, '0')}.${String(hundredths).padStart(2, '0')}`;
+    let formattedTime = `${String(seconds).padStart(2, '0')}.${tenths}`;
 
-    // Se i minuti sono diversi da 0, includili nel formato
     if (minutes > 0) {
-        formattedTime = `${String(minutes).padStart(2, '0')}:${formattedTime}`;
+        formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${tenths}`;
     }
 
-    processingText.value = `Processing... ${formattedTime}`;
+    processingText.value = `Processing... ${formattedTime}s`;
 
-    // Incrementa il contatore ogni 10 millisecondi
     timeInHundredths++;
 }
+
 </script>
 
 <style lang="css" scoped>
@@ -285,44 +326,31 @@ function printCurrentTime() {
 
 .json-scroll-container::-webkit-scrollbar {
     width: 12px;
-    /* Larghezza della scrollbar verticale */
     height: 12px;
-    /* Altezza della scrollbar orizzontale */
     border-radius: 10px;
-    /* Arrotonda i bordi della scrollbar */
 }
 
 .json-scroll-container::-webkit-scrollbar-track {
     background: #f1f1f1;
-    /* Colore della traccia della scrollbar */
     border-radius: 10px;
-    /* Arrotonda i bordi della traccia */
 }
 
 .json-scroll-container::-webkit-scrollbar-thumb {
     background: green;
-    /* Colore della parte mobile (thumb) della scrollbar */
     border-radius: 10px;
-    /* Arrotonda i bordi del thumb */
 }
 
 .json-scroll-container::-webkit-scrollbar-thumb:hover {
     background: #555;
-    /* Colore del thumb quando si passa sopra con il mouse */
 }
 
 .json-scroll-container::-webkit-scrollbar-corner {
     background: transparent;
-    /* Angolo della scrollbar (dove si incontrano x e y) */
 }
 
-/* Per Firefox */
 .json-scroll-container {
     scrollbar-width: thin;
-    /* Imposta la larghezza della scrollbar */
     scrollbar-color: green #f1f1f1;
-    /* Colori del thumb e della traccia */
     border-radius: 10px;
-    /* Arrotonda i bordi del contenitore */
 }
 </style>

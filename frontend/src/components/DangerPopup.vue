@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { usePopupStore } from '../stores/popupStores';
+import { usePopupStore } from '../stores/errorPopupStores';
 import { watchEffect } from 'vue';
 
 const popupStore = usePopupStore();
@@ -16,7 +16,6 @@ watchEffect(() => {
 
 <template>
     <div v-if="popupStore.isVisible" class="fixed inset-0 z-50 flex justify-center items-center">
-        <!-- Overlay scuro -->
         <div class="fixed inset-0 bg-black bg-opacity-50"></div>
 
         <!-- Popup -->
@@ -41,7 +40,7 @@ watchEffect(() => {
                 <h3 class="mb-5 text-lg font-normal text-gray-500">{{ popupStore.message }}</h3>
                 <button @click="popupStore.hidePopup" type="button" class="w-full text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 
     font-medium rounded-lg text-sm flex justify-center items-center px-5 py-2.5">
-                    Ok, understood !
+                    OK, understood!
                 </button>
 
             </div>
