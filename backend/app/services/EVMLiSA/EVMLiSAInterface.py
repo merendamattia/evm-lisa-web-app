@@ -60,13 +60,11 @@ class EVMLiSAInterface:
 
     def run_command(self, params):
         try:
-            print(f"api key: {self.api_key_manager.get_api_key()}")
-
             if self.api_key_manager.get_api_key() is None:
                 error_data = {"error" : "You must set your Etherscan API key!"}
                 return error_data, 500
 
-            cmd = ["java", "-jar", self.jar_path, "--etherscan-api-key", self.api_key_manager.get_api_key()]
+            cmd = ["java", "-jar", self.jar_path, "--etherscan-api-key", self.api_key_manager.get_api_key(), "--web-app-mode"]
             cmd.extend(params.build_command())
 
             result = subprocess.run(cmd, capture_output=True, text=True, check=True)
