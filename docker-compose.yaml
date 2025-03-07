@@ -2,8 +2,8 @@
 services:
   frontend:
     container_name: frontend
-    hostname: frontend
-    image: frontend
+    hostname: evmlisa-web-app-frontend
+    image: evmlisa-web-app-frontend
     build: 
       context: ./frontend
       dockerfile: Dockerfile
@@ -16,8 +16,8 @@ services:
 
   backend:
     container_name: backend
-    hostname: backend
-    image: backend
+    hostname: evmlisa-web-app-backend
+    image: evmlisa-web-app-backend
     build: 
       context: ./backend
       dockerfile: Dockerfile

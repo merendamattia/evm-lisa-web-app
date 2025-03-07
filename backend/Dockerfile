@@ -1,19 +1,17 @@
-FROM ubuntu:22.04
+FROM openjdk:11-jdk-slim
 
 WORKDIR /app
 
 # Installazione dei pacchetti necessari
 RUN apt-get update && apt-get install -y \
-    openjdk-11-jdk \
     git \
     python3 \
     python3-pip \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Specify the version of Gradle to install
+# Specifica la versione di Gradle
 ARG GRADLE_VERSION=8.0
-
 # Install Gradle
 RUN apt-get update && apt-get install -y wget unzip git && \
     wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
@@ -32,16 +30,12 @@ RUN git clone https://github.com/lisa-analyzer/evm-lisa.git && \
     cd .. && \
     rm -rf evm-lisa/
 
-
 # Installazione delle dipendenze Python
 COPY app/requirements.txt /app/requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copia del codice
 COPY . .
-
-RUN ls -la
-RUN ls -la app/
 
 EXPOSE 9273
 
