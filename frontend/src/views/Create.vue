@@ -4,10 +4,10 @@
             <h1 class="mb-4 text-xl font-bold text-gray-900">EVMLiSA: an abstract interpretation-based static analyzer
                 for EVM bytecode</h1>
             <p>EVMLiSA is a static analyzer based on abstract interpretation for EVM bytecode of smart contracts
-                deployed on Ethereum blockchain and built upon LiSA. Given a EVM bytecode smart contract, EVMLiSA builds
+                deployed on Ethereum blockchain and built upon LiSA. Given an EVM bytecode smart contract, EVMLiSA builds
                 a sound and precise control-flow graph of the smart contract.</p>
 
-            <div class="flex space-x-2 mb-4 mt-2">
+            <div class="flex flex-wrap gap-2 mb-4 mt-2">
                 <img src="https://img.shields.io/github/actions/workflow/status/lisa-analyzer/evm-lisa/gradle-master.yml"
                     alt="GitHub Actions Workflow Status" />
                 <img src="https://img.shields.io/github/last-commit/lisa-analyzer/evm-lisa" alt="GitHub last commit" />
@@ -110,7 +110,7 @@ const toastStore = useToastStore();
  * Triggers an error popup with the given message.
  * @param {string} errorMessage - The error message to display.
  */
-const triggerErrorPopup = (errorMessage : string) => {
+const triggerErrorPopup = (errorMessage: string) => {
     errorPopupStore.showPopup(errorMessage);
 }
 
@@ -251,8 +251,8 @@ const handleSubmit = async () => {
 
         const data = await response.json();
 
-        if (!response.ok) {         
-            triggerErrorPopup(data.error); 
+        if (!response.ok) {
+            triggerErrorPopup(data.error);
             throw new Error(data.error || "Unknow error");
         }
 
@@ -290,7 +290,7 @@ let timeInHundredths = 0;
  * Resets the processing timer.
  * @param {number} timerId - The timer ID to clear.
  */
-function resetTimer (timerId : number) {
+function resetTimer(timerId: number) {
     timeInHundredths = 0;
     clearInterval(timerId);
 }
@@ -299,8 +299,8 @@ function resetTimer (timerId : number) {
  * Prints the elapsed processing time in the format MM:SS.D
  */
 function printCurrentTime() {
-    const minutes = Math.floor(timeInHundredths / 6000); 
-    const seconds = Math.floor((timeInHundredths % 6000) / 100); 
+    const minutes = Math.floor(timeInHundredths / 6000);
+    const seconds = Math.floor((timeInHundredths % 6000) / 100);
     const tenths = Math.floor((timeInHundredths % 100) / 10);
 
     let formattedTime = `${String(seconds).padStart(2, '0')}.${tenths}`;
