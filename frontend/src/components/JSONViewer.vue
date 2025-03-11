@@ -34,67 +34,81 @@ function isPrimitiveType(value: JSONValue): boolean {
   return value === null || ["string", "number", "boolean"].includes(typeof value);
 }
 
+function toggleExpand() {
+  isExpanded.value = !isExpanded.value;
+  emit('toggleExpand', isExpanded.value); // Comunica al parent il cambio di stato
+}
+
 const isExpanded = ref(false);
+const isValueExpanded = ref(false);
+
+const emit = defineEmits(['toggleExpand']);
+
 </script>
 
 <template>
   <div>
 
-    <button @click="isExpanded = !isExpanded">
-      {{ isExpanded ? "➖" : "➕" }}
-    </button>
-
     <template v-if="isExpanded">
       <!-- Se è un oggetto -->
-      <template v-if="isObject">
+      <template v-if="isObject">{
 
         <div v-for="(value, key) in data as JSONObject" :key="key">
-          <div :style="{ marginLeft: (level || 0) * 15 + 'px' }">
+          <div  :style="{ marginLeft: (level || 0) * 10 + 'px', display : !isValueExpanded ? 'flex' : 'block' }">
             <span class="jsonViewerKey">"{{ key }}": </span>
 
-                <span v-if="isObject && !isExpanded">{...}</span>
-                <span v-else-if="isArray && isExpanded">[...] expand</span>
-                
-            <span v-if="isObjectType(value)"> {
-              <JsonViewer :data="value" :level="(level || 0) + 1" />
-              }
+            <span v-if="isObjectType(value)">{
+              <JsonViewer :data="value" :level="(level || 0) + 1"  @toggleExpand="isValueExpanded = $event" />
             </span>
-            <span v-else-if="isArrayType(value)"> [
-              <JsonViewer :data="value" :level="(level || 0) + 1" />
-              ]
-            </span>
-            <span v-else class="jsonViewerValue">{{ value }}</span>,
+            <span  v-else-if="isArrayType(value)"> 
+              <JsonViewer :data="value" :level="(level || 0) + 1"  @toggleExpand="isValueExpanded = $event" />
+            </span>          
+            <span v-else class="jsonViewerValue" :style="{ whiteSpace: 'nowrap' }">{{ value }}</span>
+
           </div>
         </div>
 
-      </template>
+        }<button @click="toggleExpand">
+            <span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg">-</span>
+          </button></template>
 
       <!-- Se è un array -->
-      <template v-else-if="isArray">
+      <template v-else-if="isArray">[
         <div v-for="(item, index) in data as JSONArray" :key="index">
-        <div :style="{ marginLeft: (level || 0) * 15 + 'px' }">
-          <span v-if="isObjectType(item)"> {
-            <JsonViewer :data="item" :level="(level || 0) + 1" />
-            }, <span style="color : grey">[{{ index }}]</span>
-          </span>
-          <span v-else-if="isArrayType(item)"> [
-            <JsonViewer :data="item" :level="(level || 0) + 1" />
-            ]
-          </span>
+          <div :style="{ marginLeft: (level || 0) * 10 + 'px' }">
+            
+            <span v-if="isObjectType(item)">
+              <JsonViewer :data="item" :level="(level || 0) + 1" @toggleExpand="isValueExpanded = $event" />
+            </span>
+            
+            <span v-else-if="isArrayType(item)"> 
+              <JsonViewer :data="item" :level="(level || 0) + 1" @toggleExpand="isValueExpanded = $event"/>
+              
+            </span>
+
+          </div>
         </div>
-        </div>
-      </template>
+
+      ]
+      <button @click="toggleExpand">
+            <span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg">-</span>
+        </button>
+    </template>
 
       <!-- Se è un valore primitivo -->
       <template v-else>
-        <span class="jsonViewerValue">{{ data }},</span>
+        <span class="jsonViewerValue" :style="{ whiteSpace: 'nowrap' }">{{ data }}</span>
       </template>
     </template>
 
     <template v-else>
-      <span v-if="isObject">{...}</span>
-      <span v-else-if="isArray">[...]</span>
+      <span v-if="isObject">{ ... }</span>
+      <span v-else-if="isArray">[ ... ]</span>
+      <button @click="toggleExpand">
+        <span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg">+</span>
+      </button>
     </template>
+
   </div>
 </template>
 
