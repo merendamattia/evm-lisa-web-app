@@ -141,25 +141,26 @@ watch(() => props.data, mapDataToFlow, { immediate: true })
 </script>
 
 <template>
-    <div class="mt-5" style="width: 100%; height: 80vh; border-radius: 15px;">
-        <VueFlow :nodes="nodes" :edges="edges" class="basic-flow" :default-viewport="{ zoom: 0.2 }" :min-zoom="0.2"
-            :max-zoom="4" @nodes-initialized="layoutGraph('TB')">
-            <template #node-custom="nodeProps">
-                <CustomNode v-bind="nodeProps" />
-            </template>
+<div class="mt-5 w-full h-[80vh] rounded-lg dark:bg-gray-800 dark:text-white" style="width: 100%; height: 80vh; border-radius: 15px;">
+    <VueFlow :nodes="nodes" :edges="edges" class="basic-flow" :default-viewport="{ zoom: 0.2 }" :min-zoom="0.2"
+        :max-zoom="4" @nodes-initialized="layoutGraph('TB')">
+        <template #node-custom="nodeProps">
+            <CustomNode v-bind="nodeProps" />
+        </template>
 
-            <Background pattern-color="#aaa" :gap="16" />
-            <MiniMap />
-            <Controls position="top-left">
-                <ControlButton title="Reset Transform" @click="resetTransform">
-                    <Icon name="reset" />
-                </ControlButton>
-                <ControlButton title="Legend" @click="toggleLegend" style="width: 100%; border-radius: 15px;">
-                    Show legend
-                </ControlButton>
-            </Controls>
-        </VueFlow>
-    </div>
+        <Background pattern-color="#aaa" :gap="16" />
+        <MiniMap />
+        <Controls position="top-left">
+            <ControlButton title="Reset Transform" @click="resetTransform">
+                <Icon name="reset" />
+            </ControlButton>
+            <ControlButton class="dark:text-black" title="Legend" @click="toggleLegend" style="width: 100%; border-radius: 15px;">
+                Show legend
+            </ControlButton>
+        </Controls>
+    </VueFlow>
+</div>
+
 <CFGLegends/>
 </template>
 

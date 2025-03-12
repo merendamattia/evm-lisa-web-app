@@ -10,8 +10,10 @@ const toggleTheme = () => {
   localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
 
   if (isDark.value) {
+    // Applica la classe dark a document.documentElement per attivare il tema scuro
     document.documentElement.classList.add('dark')
   } else {
+    // Rimuove la classe dark per attivare il tema chiaro
     document.documentElement.classList.remove('dark')
   }
 }
@@ -32,7 +34,6 @@ watch(isDark, (newVal) => {
     @click="toggleTheme"
     class="relative flex items-center w-14 h-7 p-1 bg-gray-300 dark:bg-gray-700 rounded-full transition-colors duration-300"
   >
-    <!-- Pallino con icone sole/luna -->
     <div 
       class="absolute left-1 w-5 h-5 flex items-center justify-center text-sm font-bold 
              bg-white dark:bg-gray-900 rounded-full shadow-md transform transition-transform duration-300"
@@ -45,7 +46,7 @@ watch(isDark, (newVal) => {
 </template>
 
 <style>
-/* Abilita il tema scuro */
+/* Aggiungi uno stile base per il tema scuro */
 .dark {
   background-color: #1a202c;
   color: #ffffff;

@@ -39,7 +39,7 @@ import DarkToggle from './DarkToggle.vue';
         </ul>
       </div>
 
-      <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center justify-center">
+      <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center gap-4 justify-center">
         <DarkToggle />
         <EtherscanAPIKey />
       </div>

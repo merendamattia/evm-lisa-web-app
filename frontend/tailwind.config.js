@@ -5,6 +5,7 @@ export default {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
     "./node_modules/flowbite-vue/**/*.{js,ts,vue}"
   ],
+  darkMode: 'class',
   theme: {
     extend: {},
   },

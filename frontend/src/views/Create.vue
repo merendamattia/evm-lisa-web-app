@@ -1,35 +1,30 @@
 <template>
-    <section class="bg-white">
+    <section class="bg-white dark:bg-gray-900">
         <div class="px-4 mx-auto">
-            <h1 class="mb-4 text-xl font-bold text-gray-900">EVMLiSA: an abstract interpretation-based static analyzer
-                for EVM bytecode</h1>
-            <p>EVMLiSA is a static analyzer based on abstract interpretation for EVM bytecode of smart contracts
-                deployed on Ethereum blockchain and built upon LiSA. Given an EVM bytecode smart contract, EVMLiSA builds
-                a sound and precise control-flow graph of the smart contract.</p>
+            <h1 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">EVMLiSA: an abstract interpretation-based static analyzer for EVM bytecode</h1>
+            <p class="text-gray-900 dark:text-gray-200">EVMLiSA is a static analyzer based on abstract interpretation for EVM bytecode of smart contracts deployed on Ethereum blockchain and built upon LiSA. Given an EVM bytecode smart contract, EVMLiSA builds a sound and precise control-flow graph of the smart contract.</p>
 
             <div class="flex flex-wrap gap-2 mb-4 mt-2">
-                <img src="https://img.shields.io/github/actions/workflow/status/lisa-analyzer/evm-lisa/gradle-master.yml"
-                    alt="GitHub Actions Workflow Status" />
+                <img src="https://img.shields.io/github/actions/workflow/status/lisa-analyzer/evm-lisa/gradle-master.yml" alt="GitHub Actions Workflow Status" />
                 <img src="https://img.shields.io/github/last-commit/lisa-analyzer/evm-lisa" alt="GitHub last commit" />
-                <img src="https://img.shields.io/github/commit-activity/y/lisa-analyzer/evm-lisa"
-                    alt="GitHub commit activity" />
+                <img src="https://img.shields.io/github/commit-activity/y/lisa-analyzer/evm-lisa" alt="GitHub commit activity" />
                 <img src="https://img.shields.io/github/issues-raw/lisa-analyzer/evm-lisa" alt="GitHub issues" />
             </div>
 
-            <hr class="mb-4 mt-4">
+            <hr class="mb-4 mt-4 border-gray-300 dark:border-gray-700">
 
-            <h1 class="mb-4 text-xl font-bold text-gray-900">Run new EVM analysis</h1>
+            <h1 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Run new EVM analysis</h1>
 
             <form @submit.prevent="handleSubmit">
                 <div class="grid gap-4 sm:grid-cols-1 sm:gap-6">
                     <!-- Address Field -->
                     <div class="sm:col-span-2">
-                        <label for="address" class="block mb-2 text-sm font-medium text-gray-900">
+                        <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Contract Address<span class="text-red-500"> *</span>
                         </label>
                         <input type="text" id="address" v-model="formData.address"
-                            :class="{ 'border-red-500': v$.address.$error }"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                            :class="{ 'border-red-500': v$.address.$error, 'dark:border-gray-600': true }"
+                            class="bg-gray-50 dark:bg-gray-800 border border-gray-300 text-gray-900 dark:text-white rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             placeholder="Enter contract address" autocomplete="off" @blur="v$.address.$touch()">
                         <p v-for="error in v$.address.$errors" :key="error.$uid" class="mt-2 text-sm text-red-500">
                             {{ error.$message }}
@@ -38,12 +33,12 @@
 
                     <!-- Bytecode Field -->
                     <div class="sm:col-span-2">
-                        <label for="bytecode" class="block mb-2 text-sm font-medium text-gray-900">
+                        <label for="bytecode" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Contract Bytecode<span class="text-red-500"> *</span>
                         </label>
                         <textarea id="bytecode" v-model="formData.bytecode" rows="4"
-                            :class="{ 'border-red-500': v$.bytecode.$error }"
-                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-50"
+                            :class="{ 'border-red-500': v$.bytecode.$error, 'dark:border-gray-600': true }"
+                            class="block p-2.5 w-full text-sm text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 border border-gray-300 focus:ring-primary-500 focus:border-primary-50 rounded-lg"
                             placeholder="Enter contract bytecode here" @blur="v$.bytecode.$touch()"></textarea>
                         <p v-for="error in v$.bytecode.$errors" :key="error.$uid" class="mt-2 text-sm text-red-500">
                             {{ error.$message }}
@@ -85,6 +80,7 @@
         </div>
     </section>
 </template>
+
 
 <script setup lang="ts">
 /**
