@@ -39,7 +39,7 @@ const saveApiKey = async () => {
         isSubmitting.value = false;
     } catch (error) {
         isSubmitting.value = false;
-        alert('Errore durante la comunicazione con il server.');
+        alert('Errore durante la comunicazione con il server.', error);
     }
 };
 </script>

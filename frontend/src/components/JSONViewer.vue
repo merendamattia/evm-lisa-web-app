@@ -17,7 +17,6 @@ const props = defineProps<{ data: JSONValue; level?: number }>();
 // Funzioni per determinare il tipo dei dati
 const isObject = computed(() => isObjectType(props.data));
 const isArray = computed(() => isArrayType(props.data));
-const isPrimitive = computed(() => isPrimitiveType(props.data));
 
 // Funzione per determinare se è un oggetto
 function isObjectType(value: JSONValue): boolean {
@@ -27,11 +26,6 @@ function isObjectType(value: JSONValue): boolean {
 // Funzione per determinare se è un array
 function isArrayType(value: JSONValue): boolean {
   return Array.isArray(value);
-}
-
-// Funzione per determinare se è un tipo primitivo (stringa, numero, booleano, null)
-function isPrimitiveType(value: JSONValue): boolean {
-  return value === null || ["string", "number", "boolean"].includes(typeof value);
 }
 
 function toggleExpand() {

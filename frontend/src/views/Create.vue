@@ -73,8 +73,18 @@
                 <template #json>
                     <div class="json-scroll-container"
                         style="width: 100%; overflow-x: scroll; overflow-y: scroll; height: 80vh;">
+                        <button @click="downloadJSON" class="flex items-center px-2 py-1 bg-green-600 text-white text-xs rounded-md mb-1">
+    <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
+    </svg>
+    <span class="ml-1 font-mono">Donwload JSON</span>
+</button>
+
                         <JSONViewer :data="JSONViewerData" />
                     </div>
+                </template>
+                <template #fs>
+                    <FunctionSignature :functions="functions" />
                 </template>
             </Tabs>
         </div>
@@ -98,6 +108,8 @@ import JSONViewer from '../components/JSONViewer.vue';
 import Disassembled from '../components/Disassembled.vue';
 import { useToastStore } from '../stores/toastStore';
 import { usePopupStore } from '../stores/errorPopupStores';
+import FunctionSignature from '@/components/FunctionSignature.vue';
+import type { Fun } from 'components/FunctionSignature.vue';
 
 const errorPopupStore = usePopupStore();
 const toastStore = useToastStore();
@@ -127,10 +139,12 @@ const tabs = [
     { label: 'CFG', slotName: 'cfg' },
     { label: 'Disassembled', slotName: 'disassembled' },
     { label: 'JSON', slotName: 'json' },
+    { label: 'Function Signature', slotName: 'fs' },
 ];
 
 const showCFG = ref(false);
 const cfgData = ref<BasicBlock[] | null>(null);
+const functions = ref < Fun[] | null>(null)
 const JSONViewerData = ref<ApiResponse | null>(null);
 const isSubmitting = ref(false);
 const processingText = ref('')
@@ -266,6 +280,8 @@ const handleSubmit = async () => {
             )
         );
 
+        functions.value = data.functions_signature;
+
         triggerToast();
         console.log(cfgData);
         v$.value.$reset();
@@ -309,6 +325,19 @@ function printCurrentTime() {
 
     timeInHundredths++;
 }
+
+const downloadJSON = () => {
+    if (!JSONViewerData.value) return;
+
+    const jsonStr = JSON.stringify(JSONViewerData.value, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'analysis_result.json';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+};
 
 </script>
 
