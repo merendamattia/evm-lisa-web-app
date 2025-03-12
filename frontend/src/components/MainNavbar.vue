@@ -8,9 +8,8 @@ import DarkToggle from './DarkToggle.vue';
     <div class="container flex flex-wrap justify-between mx-auto p-4">
       <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="/logo.png" class="h-12 dark:hidden" alt="EVMLiSA Logo">
-        <img src="/logo_dark.png" class="h-12 hidden dark:block" alt="EVMLiSA Logo">
+        <img src="/logo_white.png" class="h-12 hidden dark:block" alt="EVMLiSA Logo">
       </a>
-
 
       <div class="items-center justify-end hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
         <ul

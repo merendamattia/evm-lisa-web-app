@@ -1,7 +1,7 @@
 <template>
     <section class="bg-white dark:bg-gray-900">
         <div class="px-4 mx-auto">
-            <h1 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">EVMLiSA: an abstract interpretation-based static analyzer for EVM bytecode</h1>
+            <h1 class="mb-4 pt-4 text-xl font-bold text-gray-900 dark:text-white">EVMLiSA: an abstract interpretation-based static analyzer for EVM bytecode</h1>
             <p class="text-gray-900 dark:text-gray-200">EVMLiSA is a static analyzer based on abstract interpretation for EVM bytecode of smart contracts deployed on Ethereum blockchain and built upon LiSA. Given an EVM bytecode smart contract, EVMLiSA builds a sound and precise control-flow graph of the smart contract.</p>
 
             <div class="flex flex-wrap gap-2 mb-4 mt-2">
@@ -139,7 +139,7 @@ const tabs = [
     { label: 'CFG', slotName: 'cfg' },
     { label: 'Disassembled', slotName: 'disassembled' },
     { label: 'JSON', slotName: 'json' },
-    { label: 'Function Signature', slotName: 'fs' },
+    { label: 'Functions', slotName: 'fs' }
 ];
 
 const showCFG = ref(false);
